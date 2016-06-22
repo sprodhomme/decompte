@@ -9,7 +9,7 @@
 	<div id="bip" class="display"></div>
 
 	<script>
-	var counter = 20;
+	var counter = 5;
 	var intervalId = null;
 	function action()
 	{
@@ -24,7 +24,7 @@
 	function start()
 	{
 	  intervalId = setInterval(bip, 1000);
-	  setTimeout(action, counter * 1000);
+	  setTimeout(action, (counter+1) * 1000);
 	}	
 	</script>
 </body>
