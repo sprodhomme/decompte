@@ -14,11 +14,11 @@
 	function action()
 	{
 	  clearInterval(intervalId);
-	  document.getElementById("bip").innerHTML = "TERMINE!";	
+	  $("#bip").html("TERMINE!");
 	}
 	function bip()
 	{
-	  document.getElementById("bip").innerHTML = counter + " secondes restantes";
+	  $("#bip").html(counter + " secondes restantes");
 	  counter--;
 	}
 	function start()
