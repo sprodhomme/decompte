@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+  <form method="POST">
+	<input type="text" id="pseudo" name="pseudo" value="Prénom" />
+	<input type="email" id="mail" name="mail" value="prenom@yopmail.com" />
+	<input type="submit" />
+  </form>
+  <hr />
+  <table>
+    <tbody id="resultats">
+	</body>
+  </table>
+  <script>
+  var url = "http://localhost:9200/users/";
+  
+  $("form").on('submit', function(e) {
+	e.preventDefault();
+	console.log(e);
+	var $this = $(this); // L'objet jQuery du formulaire
+
+	// Je récupère les valeurs
+	var pseudo = $('#pseudo').val();
+	var mail = $('#mail').val();
+
+	// Je vérifie une première fois pour ne pas lancer la requête HTTP
+	// si je sais que mon PHP renverra une erreur
+	if(pseudo === '' || mail === '') {
+		alert('Les champs doivent être remplis');
+	} else {
+		// Envoi de la requête HTTP en mode asynchrone
+		$.ajax({
+			//url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
+			url: url + (new Date()).getTime(), // Le nom du fichier indiqué dans le formulaire
+			type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
+			data: $this.serialize(), // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
+			success: function(html) { // Je récupère la réponse du fichier PHP
+				alert(html); // J'affiche cette réponse
+			}
+		});
+	}
+  });
+  </script>
+</body>
+</html>

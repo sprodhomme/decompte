@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+	<button onclick="start()">Lancer le décompte</button>
+	<div id="bip" class="display"></div>
+
+	<script>
+	var counter = 20;
+	var intervalId = null;
+	function action()
+	{
+	  clearInterval(intervalId);
+	  document.getElementById("bip").innerHTML = "TERMINE!";	
+	}
+	function bip()
+	{
+	  document.getElementById("bip").innerHTML = counter + " secondes restantes";
+	  counter--;
+	}
+	function start()
+	{
+	  intervalId = setInterval(bip, 1000);
+	  setTimeout(action, counter * 1000);
+	}	
+	</script>
+</body>
+</html>
